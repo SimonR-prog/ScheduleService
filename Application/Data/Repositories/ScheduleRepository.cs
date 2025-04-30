@@ -1,8 +1,9 @@
-﻿namespace Application.Data.Repositories;
+﻿using Application.Contexts;
+using Application.Domain.Entities;
 
-public class ScheduleRepository : BaseRepository
+namespace Application.Data.Repositories;
+
+public class ScheduleRepository(DataContext context) : BaseRepository<ScheduleEntity>(context)
 {
-
-
 
 }
