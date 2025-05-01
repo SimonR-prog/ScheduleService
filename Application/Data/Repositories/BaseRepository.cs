@@ -1,11 +1,12 @@
 ﻿using Application.Contexts;
 using Application.Domain.Models.Response;
+using Application.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
 namespace Application.Data.Repositories;
 
-public class BaseRepository<TEntity>(DataContext context) where TEntity : class
+public class BaseRepository<TEntity>(DataContext context) : IBaseRepository<TEntity> where TEntity : class
 {
     protected readonly DataContext _context = context;
     protected readonly DbSet<TEntity> _dbSet = context.Set<TEntity>();
@@ -38,16 +39,16 @@ public class BaseRepository<TEntity>(DataContext context) where TEntity : class
         catch (Exception ex) { return new RepoResponse() { StatusCode = 500, Success = false, Message = $"{ex.Message}" }; }
     }
 
-    public virtual async Task<RepoResponse> GetAsync(Expression<Func<TEntity, bool>> predicate)
+    public virtual async Task<RepoResponse<TEntity>> GetAsync(Expression<Func<TEntity, bool>> predicate)
     {
         try
         {
-            if (predicate == null) { return new RepoResponse() { Success = false, StatusCode = 400, Message = "Predicate is null." }; }
+            if (predicate == null) { return new RepoResponse<TEntity>() { Success = false, StatusCode = 400, Message = "Predicate is null.", Content = null }; }
 
             var entity = await _dbSet.FirstOrDefaultAsync(predicate);
             return new RepoResponse<TEntity>() { Success = true, StatusCode = 200, Content = entity };
         }
-        catch (Exception ex) { return new RepoResponse() { StatusCode = 500, Success = false, Message = $"{ex.Message}" }; }
+        catch (Exception ex) { return new RepoResponse<TEntity>() { StatusCode = 500, Success = false, Message = $"{ex.Message}", Content = null }; }
     }
 
     public virtual async Task<RepoResponse> UpdateAsync(TEntity entity)
