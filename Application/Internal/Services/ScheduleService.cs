@@ -7,9 +7,9 @@ using Application.Internal.Factories;
 
 namespace Application.Internal.Services;
 
-public class ScheduleService(ScheduleRepository scheduleRepository) : IScheduleService
+public class ScheduleService(IScheduleRepository scheduleRepository) : IScheduleService
 {
-    private readonly ScheduleRepository _scheduleRepository = scheduleRepository;
+    private readonly IScheduleRepository _scheduleRepository = scheduleRepository;
 
 
     public async Task<ScheduleResponse> AddScheduleAsync(AddScheduleForm addForm)
