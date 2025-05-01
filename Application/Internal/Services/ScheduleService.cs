@@ -2,21 +2,22 @@
 using Application.Domain.Forms;
 using Application.Domain.Models;
 using Application.Domain.Models.Response;
+using Application.Interfaces;
 using Application.Internal.Factories;
 
 namespace Application.Internal.Services;
 
-public class ScheduleService(ScheduleRepository scheduleRepository)
+public class ScheduleService(ScheduleRepository scheduleRepository) : IScheduleService
 {
     private readonly ScheduleRepository _scheduleRepository = scheduleRepository;
 
 
-    public async Task<ScheduleResponse> AddSchedule(AddScheduleForm addForm)
+    public async Task<ScheduleResponse> AddScheduleAsync(AddScheduleForm addForm)
     {
         try
         {
             if (addForm == null) { return new ScheduleResponse() { Success = false, StatusCode = 400, Message = "The form is null." }; }
-            
+
             var entity = ScheduleFactory.Create(addForm);
             if (entity == null) { return new ScheduleResponse() { Success = false, StatusCode = 400, Message = "The entity is null." }; }
 
@@ -28,7 +29,7 @@ public class ScheduleService(ScheduleRepository scheduleRepository)
         catch (Exception ex) { return new ScheduleResponse() { StatusCode = 500, Success = false, Message = $"{ex.Message}" }; }
     }
 
-    public async Task<ScheduleResponse<EventSchedule>> GetSchedule(string id)
+    public async Task<ScheduleResponse<EventSchedule>> GetScheduleAsync(string id)
     {
         try
         {
@@ -45,12 +46,12 @@ public class ScheduleService(ScheduleRepository scheduleRepository)
         catch (Exception ex) { return new ScheduleResponse<EventSchedule>() { StatusCode = 500, Success = false, Message = $"{ex.Message}", Content = null }; }
     }
 
-    public async Task<ScheduleResponse> UpdateSchedule(UpdateScheduleForm updateForm)
+    public async Task<ScheduleResponse> UpdateScheduleAsync(UpdateScheduleForm updateForm)
     {
         try
         {
             if (updateForm == null) { return new ScheduleResponse() { Success = false, StatusCode = 400, Message = "The form is null." }; }
-            
+
             var entity = ScheduleFactory.Create(updateForm);
             if (entity == null) { return new ScheduleResponse() { Success = false, StatusCode = 400, Message = "The entity is null." }; }
 
@@ -62,7 +63,7 @@ public class ScheduleService(ScheduleRepository scheduleRepository)
         catch (Exception ex) { return new ScheduleResponse() { StatusCode = 500, Success = false, Message = $"{ex.Message}" }; }
     }
 
-    public async Task<ScheduleResponse> DeleteSchedule(string id)
+    public async Task<ScheduleResponse> DeleteScheduleAsync(string id)
     {
         try
         {
