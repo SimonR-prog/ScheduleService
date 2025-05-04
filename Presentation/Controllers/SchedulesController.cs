@@ -28,7 +28,7 @@ public class SchedulesController(IScheduleService scheduleService) : ControllerB
         return result.Success ? Ok(result) : BadRequest(result);
     }
 
-    [HttpGet]
+    [HttpGet("{id}")]
     public async Task<IActionResult> Get(string id)
     {
         if (id == null) { return BadRequest(); }
@@ -37,7 +37,7 @@ public class SchedulesController(IScheduleService scheduleService) : ControllerB
         return result.Success ? Ok(result) : BadRequest(result);
     }
     
-    [HttpPost]
+    [HttpDelete("{id}")]
     public async Task<IActionResult> Delete(string id)
     {
         if (id == null) { return BadRequest(); }
