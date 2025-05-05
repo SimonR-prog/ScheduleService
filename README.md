@@ -76,13 +76,15 @@ Upon success you will recieve:
 
 ### Adding the schedule:
 
-<img src="https://github.com/user-attachments/assets/ff2cef35-9cad-42fd-b3c9-7219730921e2" height="400">
+Event title is going to be the name of the event in the future when everything is properly hocked up.
 
+<img src="https://github.com/user-attachments/assets/ff2cef35-9cad-42fd-b3c9-7219730921e2" height="400">
 
 ### Showing of the schedule:
 
-<img src="https://github.com/user-attachments/assets/028d3aff-bd27-4669-8a84-dd94fb8b15f9" height="200">
+The AM/PM changes depending on if the first two digits is higher or lower than 12.
 
+<img src="https://github.com/user-attachments/assets/028d3aff-bd27-4669-8a84-dd94fb8b15f9" height="200">
 
 ### Flow:  (Subject to change)
 
