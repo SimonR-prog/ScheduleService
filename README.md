@@ -11,7 +11,7 @@ Made by https://github.com/SimonR-prog
 
 Is made by sending a request with no id at the end. 
 
-www.url.net/api/Schedules/
+www.EXAMPLEURL.net/api/Schedules/
 
 The api needs data that looks like this: (All fields it takes in are handled like strings.)
 
@@ -34,7 +34,7 @@ If sending a POST, then the data will be added. If PUT then the data will be upd
 
 Is made by sending a request with an id at the end. 
 
-www.url.net/api/Schedules/56f58514-7581-4b18-97f5-b6eb5ba7b9c5
+www.EXAMPLEURL.net/api/Schedules/56f58514-7581-4b18-97f5-b6eb5ba7b9c5
 
 And you will recieve data in json format that looks like this on success:
 
@@ -60,7 +60,7 @@ And you will recieve data in json format that looks like this on success:
 
 Is made by sending a request with an id at the end. 
 
-www.url.net/api/Schedules/56f58514-7581-4b18-97f5-b6eb5ba7b9c5
+www.EXAMPLEURL.net/api/Schedules/56f58514-7581-4b18-97f5-b6eb5ba7b9c5
 
 Upon success you will recieve:
 
